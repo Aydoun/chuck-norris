@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "webpack-dev-server --open",
+    "server": "node server.js",
     "test": "npm test"
   },
   "repository": {
@@ -20,5 +22,22 @@
   "bugs": {
     "url": "https://github.com/Aydoun/chuck-norris/issues"
   },
-  "homepage": "https://github.com/Aydoun/chuck-norris#readme"
+  "homepage": "https://github.com/Aydoun/chuck-norris#readme",
+  "dependencies": {
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.2.3",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.4",
+    "clean-webpack-plugin": "^1.0.0",
+    "express": "^4.16.4",
+    "html-webpack-plugin": "^3.2.0",
+    "prop-types": "^15.6.2",
+    "react-testing-library": "^5.4.2",
+    "webpack": "^4.28.3",
+    "webpack-dev-middleware": "^3.4.0"
+  }
 }
