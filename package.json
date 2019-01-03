@@ -1,0 +1,24 @@
+{
+  "name": "chuck-norris",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Aydoun/chuck-norris.git"
+  },
+  "keywords": [
+    "react",
+    "react-hooks",
+    "react-testing-library"
+  ],
+  "author": "Mohamed Aydoun",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Aydoun/chuck-norris/issues"
+  },
+  "homepage": "https://github.com/Aydoun/chuck-norris#readme"
+}
