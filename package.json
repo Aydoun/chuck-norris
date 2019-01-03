@@ -38,6 +38,7 @@
     "prop-types": "^15.6.2",
     "react-testing-library": "^5.4.2",
     "webpack": "^4.28.3",
-    "webpack-dev-middleware": "^3.4.0"
+    "webpack-dev-middleware": "^3.4.0",
+    "webpack-hot-middleware": "^2.24.3"
   }
 }
