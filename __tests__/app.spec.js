@@ -1,28 +1,35 @@
-// __tests__/fetch.js
-import React from 'react'
+import React from 'react';
+import axiosMock from 'axios';
+import {render, fireEvent, cleanup, waitForElement} from 'react-testing-library';
+import { requestJokesList } from '../src/api';
 import App from '../src/app';
-import {render, fireEvent, cleanup, waitForElement} from 'react-testing-library'
 
-// this adds custom jest matchers from jest-dom
-import 'jest-dom/extend-expect'
 const {getByText, getByTestId, container, asFragment} = render(
     <App  />,
 );
+const url = 'http://api.icndb.com/jokes/random/10';
 
 // automatically unmount and cleanup DOM after the test is finished.
 afterEach(cleanup)
 
 test('App Snapshot matching Smoke Test ', () => {
   // Arrange
-  expect(asFragment()).toMatchSnapshot()
-
   // Assert
-//   expect(axiosMock.get).toHaveBeenCalledTimes(1)
-//   expect(axiosMock.get).toHaveBeenCalledWith(url)
-//   expect(getByTestId('greeting-text')).toHaveTextContent('hello there')
-//   expect(getByTestId('ok-button')).toHaveAttribute('disabled')
-//   // snapshots work great with regular DOM nodes!
-//   expect(container.firstChild).toMatchSnapshot()
-//   // you can also use get a `DocumentFragment`, which is useful if you want to compare nodes across render
-//   expect(asFragment()).toMatchSnapshot()
+  expect(asFragment()).toMatchSnapshot();
+  expect(container.firstChild).toMatchSnapshot()
+});
+
+test('App should Request 10 random Jokes from Api',async () => {
+    // Arrange
+    axiosMock.get.mockImplementationOnce(() =>
+      Promise.resolve({
+        data: { results: [] }
+      })
+    );
+
+    const response = await requestJokesList(10);
+
+    expect(response.data.results).toEqual([]);
+    expect(axiosMock.get).toHaveBeenCalledTimes(2);
+    expect(axiosMock.get).toHaveBeenCalledWith(url);
 });
