@@ -6,7 +6,8 @@
   "scripts": {
     "start": "webpack-dev-server --open",
     "server": "node server.js",
-    "test": "jest -u"
+    "test": "jest -u",
+    "lint": "eslint --fix './src/**/*.js?(x)'"
   },
   "repository": {
     "type": "git",
@@ -35,8 +36,13 @@
     "@babel/preset-env": "^7.2.3",
     "@babel/preset-react": "^7.0.0",
     "babel-core": "^7.0.0-bridge.0",
+    "babel-eslint": "^10.0.1",
     "babel-loader": "^8.0.4",
     "clean-webpack-plugin": "^1.0.0",
+    "eslint": "^5.11.1",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.2",
+    "eslint-plugin-react": "^7.12.2",
     "express": "^4.16.4",
     "html-webpack-plugin": "^3.2.0",
     "jest": "^23.6.0",

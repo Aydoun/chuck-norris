@@ -1,3 +1,3 @@
-export default  {
-    baseUrl : 'http://api.icndb.com/jokes/random',
-}
+export default {
+  baseUrl: 'http://api.icndb.com/jokes/random',
+};
