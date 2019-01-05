@@ -1,10 +1,10 @@
 import React from 'react';
 import axiosMock from 'axios';
-import {render, fireEvent, cleanup, waitForElement} from 'react-testing-library';
+import {render, fireEvent, cleanup} from 'react-testing-library';
 import { requestJokesList } from '../src/api';
 import App from '../src/app';
 
-const {getByText, getByTestId, container, asFragment} = render(
+const { asFragment, container } = render(
     <App  />,
 );
 const url = 'http://api.icndb.com/jokes/random/10';

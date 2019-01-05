@@ -1,0 +1,22 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    height: 64px;
+    background:#a8dea9;
+}
+
+.app__content {
+    margin: 20px auto; 
+}
+
+.jokes__item {
+    padding: 20px 15px;
+    font-size: larger;
+}
+
+.joke__item--action {
+    float: right;
+}
