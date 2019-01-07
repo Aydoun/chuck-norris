@@ -16,7 +16,7 @@ class Jokes extends React.Component {
                         content.map(c => {
                             return (
                                 <ListGroupItem className="jokes__item" key={c.id}>
-                                    <Joke text={c.joke} type={type} onAction={() => onAction(c.id, type)} />
+                                    <Joke text={c.joke} type={type} id={c.id} onAction={onAction} />
                                 </ListGroupItem>
                             )
                         })
