@@ -26,9 +26,9 @@
   "homepage": "https://github.com/Aydoun/chuck-norris#readme",
   "dependencies": {
     "axios": "^0.18.0",
-    "react": "^16.7.0",
+    "react": "^16.7.0-alpha.2",
     "react-bootstrap": "^0.32.4",
-    "react-dom": "^16.7.0"
+    "react-dom": "^16.7.0-alpha.2"
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0",

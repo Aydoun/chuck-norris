@@ -83,9 +83,11 @@ export default class App extends React.Component {
             this.setState(prevState => {
               const { favorites } = prevState;
               if(favorites.length < 10) {
+                const newFavorites = favorites.concat(data.value);
+                saveToStorage('favorites', newFavorites);
                 return {
-                  favorites: favorites.concat(data.value),
-                };
+                  favorites: newFavorites,
+                }; 
               } else {
                 clearInterval(this.interval);
                 this.interval = null;
@@ -98,16 +100,10 @@ export default class App extends React.Component {
         });
       }, 5000);
     }
-
-    this.setState(() => {
-      return {
-        buttonText: this.interval !== null ? 'Stop Time' : 'Start Time',
-      };
-    })
   }
 
   render() {
-    const { jokesContent, favorites, loading, buttonText } = this.state;
+    const { jokesContent, favorites, loading } = this.state;
     if (loading) {
       return (
         <ProgressBar active now={100} />
@@ -116,7 +112,7 @@ export default class App extends React.Component {
 
     return (
       <div>
-        <Header onAction={this.ToggleTimer} buttonText={buttonText} />
+        <Header onAction={this.ToggleTimer} />
         <div className="app__content">
           <Grid>
             <Row className="show-grid">

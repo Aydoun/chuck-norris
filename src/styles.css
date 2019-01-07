@@ -8,6 +8,12 @@ body {
     background:#a8dea9;
 }
 
+.header__timer {
+    width: 150px;
+    margin: 0px auto;
+    padding: 12px;
+}
+
 .app__content {
     margin: 20px auto; 
 }

@@ -20,9 +20,9 @@ class Joke extends React.Component {
         const buttonType = type === 'main' ? 'info' : 'danger';
         return (
             <div>
-                <span>{text}</span>
+                <span data-testid="joke-text">{text}</span>
                 <div className="joke__item--action">
-                    <Button bsStyle={buttonType} onClick={this.onClick}>{buttonText}</Button>
+                    <Button data-testid="joke-action" bsStyle={buttonType} onClick={this.onClick}>{buttonText}</Button>
                 </div>
             </div>
         );
