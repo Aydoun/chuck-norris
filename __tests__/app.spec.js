@@ -2,6 +2,7 @@ import React from 'react';
 import axiosMock from 'axios';
 import {render, fireEvent, cleanup, waitForElement} from 'react-testing-library';
 import { requestJokesList } from '../src/api';
+import { swapJoke } from '../src/utils';
 import App from '../src/app';
 import Header from '../src/components/containers/header';
 import Joke from '../src/components/presentations/joke';
@@ -70,4 +71,22 @@ test('Joke Component Should render the correct text',() => {
   fireEvent.click(buttonTestId);
 
   expect(onAction).toHaveBeenCalledTimes(1)
+});
+
+test('Service should swap Elements from array', () => {
+  // Arrange
+  const arr1 = [{ id: 1, text: 'joke1' }];
+  const arr2 = [{ id: 23, text: 'joke2' }, { id: 25, text: 'joke3' }];
+
+  // Act
+  swapJoke(1, arr1, arr2);
+  swapJoke(25, arr2, arr1 );
+  swapJoke(255, arr2, arr1 );
+
+  // Expect
+  expect(arr1.length).toBe(1);
+  expect(arr2.length).toBe(2);
+  expect(arr1[0].text).toEqual('joke3');
+  expect(arr2[0].text).toEqual('joke2');
+  expect(arr2[1].text).toEqual('joke1');
 });

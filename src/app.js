@@ -4,7 +4,7 @@ import Jokes from './components/containers/jokes';
 import { Row, Col, Grid, ProgressBar } from 'react-bootstrap/lib';
 
 import { requestJokesList } from './api';
-import { saveToStorage, getFromStorage } from './utils';
+import { saveToStorage, getFromStorage, swapJoke } from './utils';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -17,14 +17,25 @@ export default class App extends React.Component {
       jokesContent: [],
       favorites: [],
       loading: true,
-      buttonText: undefined,
     };
+  }
+
+  addToFavorites(arr, item) {
+    if(arr.length < 10) {
+      const newFavorites = arr.concat(item);
+      saveToStorage('favorites', newFavorites);
+      return newFavorites;
+    } else {
+      clearInterval(this.interval);
+      this.interval = null;
+    }
+
+    return arr;
   }
   
   componentDidMount() {
     requestJokesList(10)
-      .then((response) => {
-        const data = response.data;
+      .then((data) => {
         if (data.type === 'success') {
           this.setState(() => {
             return {
@@ -35,31 +46,21 @@ export default class App extends React.Component {
           });
         }
       })
-      .catch((err) => {
-        console.log(err.message, 'message');
-        this.setState(() => {
-          return {
-            loading: false,
-          };
-        })
+      .catch(() => {
+        this.setState({ loading: false })
       });
   }
 
   onAction(id, type) {
     this.setState((prevState) => {
       const { jokesContent, favorites } = prevState;
-      let itemIndex;
 
       if (type === 'main') {
         if(favorites.length < 10) {
-          itemIndex = jokesContent.findIndex(c => c.id === id);
-          favorites.push(jokesContent[itemIndex]);
-          jokesContent.splice(itemIndex, 1);    
+          swapJoke(id, jokesContent, favorites);
         }
       } else {
-        itemIndex = favorites.findIndex(c => c.id === id);
-        jokesContent.push(favorites[itemIndex]);
-        favorites.splice(itemIndex, 1);
+        swapJoke(id, favorites, jokesContent);
       }
 
       saveToStorage('favorites', favorites);
@@ -77,21 +78,12 @@ export default class App extends React.Component {
     } else {
       this.interval = setInterval(() => {
         requestJokesList(1)
-        .then((response) => {
-          const data = response.data;
+        .then((data) => {
           if (data.type === 'success') {
             this.setState(prevState => {
-              const { favorites } = prevState;
-              if(favorites.length < 10) {
-                const newFavorites = favorites.concat(data.value);
-                saveToStorage('favorites', newFavorites);
-                return {
-                  favorites: newFavorites,
-                }; 
-              } else {
-                clearInterval(this.interval);
-                this.interval = null;
-              }
+              return {
+                favorites: addToFavorites(prevState.favorites, data.value),
+              };
             });
           }
         })
