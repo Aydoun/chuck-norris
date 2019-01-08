@@ -82,7 +82,7 @@ export default class App extends React.Component {
           if (data.type === 'success') {
             this.setState(prevState => {
               return {
-                favorites: addToFavorites(prevState.favorites, data.value),
+                favorites: this.addToFavorites(prevState.favorites, data.value),
               };
             });
           }
