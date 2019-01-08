@@ -1,6 +1,7 @@
 import React from 'react';
 import { Row, Col, Grid, ProgressBar } from 'react-bootstrap/lib';
 import Timer from '../presentations/timer';
+import JokesList from '../presentations/jokesList';
 
 export default class Jokes extends React.Component {
   constructor(props) {
@@ -26,10 +27,10 @@ export default class Jokes extends React.Component {
           <Grid>
             <Row className="show-grid">
               <Col xs={9} md={6}>
-                <p>Hey</p>
+                <JokesList content={[]}/>
               </Col>
               <Col xs={9} md={6}>
-                <p>Mey</p>
+              <JokesList content={[]}/>
               </Col>
             </Row>
           </Grid>

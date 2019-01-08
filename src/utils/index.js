@@ -18,6 +18,10 @@ export const swapJoke = (id, source, destination) => {
     }
 }
 
+export const isLoggedIn = () => {
+    return localStorage.getItem('LoggedIn') === true;
+}
+
 export const validatePassword = password => {
     if (password.length > 32) {
         return ERROR_MESSAGES.PASSWORD_TOO_LONG;

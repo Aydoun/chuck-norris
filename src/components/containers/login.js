@@ -1,5 +1,5 @@
 import React from 'react';
-import authService from '../../utils/auth';
+import { isLoggedIn } from '../../utils';
 
 export default class Login extends React.Component {
     constructor(props) {
@@ -19,16 +19,9 @@ export default class Login extends React.Component {
     }
 
     render() {
-       const { from } = this.props.location.state || { from: { pathname: '/app' } };
-       const { redirectToReferrer } = this.state;
-       if (redirectToReferrer === true) {
-          this.props.history.push(from.pathname);
-       }
-        return (
-          <div>
-             <p>Please, you need to be authenticated to to view this content</p>
-             <button onClick={this.login}>Log in</button>
-          </div>
+       console.log(isLoggedIn(), 'isLoggedIn');
+       return (
+          <p>I'm Login</p>
        )
     }
  }
