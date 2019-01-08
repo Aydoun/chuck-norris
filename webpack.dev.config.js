@@ -6,6 +6,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 module.exports = {
     mode: 'development',
     entry: [
+        'babel-polyfill',
         'webpack-hot-middleware/client',
         './src/index.js'
     ],

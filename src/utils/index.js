@@ -1,3 +1,5 @@
+import { ERROR_MESSAGES } from '../constants';
+
 export const saveToStorage = (key, value) => {
     localStorage.setItem(key, JSON.stringify(value));
     return true;
@@ -14,4 +16,14 @@ export const swapJoke = (id, source, destination) => {
         destination.push(source[idx]);
         source.splice(idx, 1);
     }
+}
+
+export const validatePassword = password => {
+    if (password.length > 32) {
+        return ERROR_MESSAGES.PASSWORD_TOO_LONG;
+    } else if (/\d/.test(password)) {
+        return ERROR_MESSAGES.ONLY_ALPHABET;
+    }
+
+    return true;
 }

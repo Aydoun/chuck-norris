@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Button } from 'react-bootstrap/lib';
 
-class Joke extends React.Component {
+class Joke extends React.PureComponent {
     constructor(props) {
         super(props);
         this.onClick = this.onClick.bind(this);
@@ -15,9 +15,9 @@ class Joke extends React.Component {
 
     render() {
         const { type, text } = this.props;
-
         const buttonText = type === 'main' ? 'Favorite' : 'Remove';
         const buttonType = type === 'main' ? 'info' : 'danger';
+        
         return (
             <div>
                 <span data-testid="joke-text">{text}</span>

@@ -1,44 +1,40 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { Panel, ListGroup, ListGroupItem } from 'react-bootstrap/lib';
-import Joke from '../presentations/joke';
+import { Row, Col, Grid, ProgressBar } from 'react-bootstrap/lib';
+import Timer from '../presentations/timer';
 
-class Jokes extends React.Component {
-    render() {
-        const { header, content, type, onAction } = this.props;
-        
-        return (
-            <Panel>
-                <Panel.Heading>{header}</Panel.Heading>
-                {content.length === 0 && <Panel.Body>The List is Empty</Panel.Body>}
-                <ListGroup>
-                    {
-                        content.map(c => {
-                            return (
-                                <ListGroupItem className="jokes__item" key={c.id}>
-                                    <Joke text={c.joke} type={type} id={c.id} onAction={onAction} />
-                                </ListGroupItem>
-                            )
-                        })
-                    }
-                </ListGroup>
-            </Panel>
-        );
-    }
+export default class Jokes extends React.Component {
+  constructor(props) {
+    super(props);
+    this.interval = null;
+  }
+  
+  componentDidMount() {
+    
+  }
+
+  render() {
+    // if (loading) {
+    //   return (
+    //     <ProgressBar active now={100} />
+    //   )
+    // }
+
+    return (
+      <div>
+        <Timer />
+        <div className="app__content">
+          <Grid>
+            <Row className="show-grid">
+              <Col xs={9} md={6}>
+                <p>Hey</p>
+              </Col>
+              <Col xs={9} md={6}>
+                <p>Mey</p>
+              </Col>
+            </Row>
+          </Grid>
+        </div>
+      </div>
+    );
+  }
 }
-
-Jokes.propTypes = {
-    header: PropTypes.string,
-    type: PropTypes.string,
-    content: PropTypes.array,
-    onAction: PropTypes.func
-};
-
-Jokes.defaultProps = {
-    header: '<header>',
-    type: 'main',
-    content: [],
-    onAction: () => {},
-};
-
-export default Jokes;

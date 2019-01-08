@@ -26,9 +26,14 @@
   "homepage": "https://github.com/Aydoun/chuck-norris#readme",
   "dependencies": {
     "axios": "^0.18.0",
+    "babel-polyfill": "^6.26.0",
     "react": "^16.7.0-alpha.2",
     "react-bootstrap": "^0.32.4",
-    "react-dom": "^16.7.0-alpha.2"
+    "react-dom": "^16.7.0-alpha.2",
+    "react-redux": "^6.0.0",
+    "react-router-dom": "^4.3.1",
+    "redux": "^4.0.1",
+    "redux-saga": "^0.16.2"
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0",

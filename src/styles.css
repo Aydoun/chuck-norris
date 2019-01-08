@@ -8,9 +8,9 @@ body {
     background:#a8dea9;
 }
 
-.header__timer {
+.app__timer {
     width: 150px;
-    margin: 0px auto;
+    margin: 20px auto;
     padding: 12px;
 }
 
