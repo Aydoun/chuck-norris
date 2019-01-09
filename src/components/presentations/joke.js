@@ -3,18 +3,8 @@ import PropTypes from 'prop-types';
 import { Button } from 'react-bootstrap/lib';
 
 class Joke extends React.PureComponent {
-    constructor(props) {
-        super(props);
-        this.onClick = this.onClick.bind(this);
-    }
-
-    onClick() {
-        const { type, id, onAction } = this.props;
-        onAction(id, type);
-    }
-
     render() {
-        const { type, text } = this.props;
+        const { type, text, id, onAction } = this.props;
         const buttonText = type === 'main' ? 'Favorite' : 'Remove';
         const buttonType = type === 'main' ? 'info' : 'danger';
         
@@ -22,7 +12,7 @@ class Joke extends React.PureComponent {
             <div>
                 <span data-testid="joke-text">{text}</span>
                 <div className="joke__item--action">
-                    <Button data-testid="joke-action" bsStyle={buttonType} onClick={this.onClick}>{buttonText}</Button>
+                    <Button data-testid="joke-action" bsStyle={buttonType} onClick={onAction(id, type)}>{buttonText}</Button>
                 </div>
             </div>
         );

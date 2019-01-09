@@ -18,19 +18,11 @@ class Jokes extends React.Component {
   }
 
   onStartTimer() {
-    const { favorites } = this.props;
+    const { favorites, getOneJoke } = this.props;
 
-    if (this.interval) {
-      this.stopTimer();
-    } else {
-      this.interval = setInterval(() => {
-        if (favorites.length < 10) {
-          this.props.getOneJoke(1);
-        } else {
-          this.stopTimer();
-        }
-      }, 5000);
-    }
+    this.interval = setInterval(() => {
+      (favorites.length < 10) ? getOneJoke(1) : this.stopTimer();
+    }, 5000);
   }
 
   stopTimer() {
@@ -39,13 +31,13 @@ class Jokes extends React.Component {
   }
 
   render() {
-    const { jokesList, listLoading, favorites } = this.props;
+    const { jokesList, listLoading, favorites, moveFavorite } = this.props;
     if (listLoading) {
       return (
         <ProgressBar active now={100} />
-      )
+      );
     }
-    
+
     return (
       <div>
         <Timer startTimer={this.onStartTimer}/>
@@ -53,10 +45,20 @@ class Jokes extends React.Component {
           <Grid>
             <Row className="show-grid">
               <Col xs={9} md={6}>
-                <JokesList header="Jokes List" type="main" content={jokesList}/>
+                <JokesList 
+                  header="Jokes List" 
+                  type="main" 
+                  content={jokesList}
+                  onAction={moveFavorite}
+                />
               </Col>
               <Col xs={9} md={6}>
-                <JokesList header="Favorites" type="favorites" content={favorites}/>
+                <JokesList 
+                  header="Favorites" 
+                  type="favorites" 
+                  content={favorites}
+                  onAction={moveFavorite}
+                />
               </Col>
             </Row>
           </Grid>
@@ -67,7 +69,16 @@ class Jokes extends React.Component {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ getJokesList, getOneJoke }, dispatch);
+  return {
+    ...bindActionCreators({ getJokesList, getOneJoke }, dispatch),
+    moveFavorite: (id, actionType) => () => {
+      dispatch({
+        type: "MOVE_FAVORITES",
+        id,
+        actionType,
+      });
+    }
+  }
 }
 
 function mapStateToProps(state) {

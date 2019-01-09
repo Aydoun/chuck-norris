@@ -9,8 +9,8 @@ class JokesList extends React.Component {
         
         return (
             <Panel>
-                <Panel.Heading>{header}</Panel.Heading>
-                {content.length === 0 && <Panel.Body>The List is Empty</Panel.Body>}
+                <Panel.Heading data-testid="panel-title">{header}</Panel.Heading>
+                {content.length === 0 && <Panel.Body data-testid="panel-body">The List is Empty</Panel.Body>}
                 <ListGroup>
                     {
                         content.map(c => {

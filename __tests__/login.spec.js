@@ -1,26 +1,54 @@
-import React from 'react';
-import { validatePassword } from '../src/utils';
-import { ERROR_MESSAGES } from '../src/constants';
+import React from 'react'
+import {render, fireEvent, cleanup} from 'react-testing-library';
+import Login from '../src/components/containers/login';
 
-const ERRORS = {
-    PASSWORD_TOO_LONG : "PASSWORD_TOO_LONG",
-    ONLY_ALPHABETIC: "ONLY_ALPHABETIC",
-}
+// class CostInput extends React.Component {
+//   state = {
+//     value: '',
+//   }
 
+//   removeDollarSign = value => (value[0] === '$' ? value.slice(1) : value)
+//   getReturnValue = value => (value === '' ? '' : `$${value}`)
+//   handleChange = ev => {
+//     ev.preventDefault()
+//     const inputtedValue = ev.currentTarget.value
+//     const noDollarSign = this.removeDollarSign(inputtedValue)
+//     if (isNaN(noDollarSign)) return
+//     this.setState({value: this.getReturnValue(noDollarSign)})
+//   }
 
-test('Password should contain no longer than 32 chatacters', () => {
-  const longString = 'aassddffvvccxxzzbbssjjrruueeiiddo';
-  const shortString = 'this is a short string';
+//   render() {
+//     return (
+//       <input
+//         value={this.state.value}
+//         aria-label="cost-input"
+//         onChange={this.handleChange}
+//       />
+//     )
+//   }
+// }
 
-  expect(validatePassword(longString)).toEqual(ERROR_MESSAGES.PASSWORD_TOO_LONG);
-  expect(validatePassword(shortString)).not.toEqual(ERROR_MESSAGES.PASSWORD_TOO_LONG)
-});
+// const setup = () => {
+//   const utils = render(<CostInput />)
+//   const input = utils.getByLabelText('cost-input')
+//   return {
+//     input,
+//     ...utils,
+//   }
+// }
 
-test('Password should only contain lower case alphabetic characters', () => {
-  const alphaNumericString = 'string 12 is not valid';
-  const onlyAlphabet = 'this is only alphabetic string';
+afterEach(cleanup);
 
-  expect(validatePassword(alphaNumericString)).toEqual(ERROR_MESSAGES.ONLY_ALPHABET);
-  expect(validatePassword(onlyAlphabet)).not.toEqual(ERROR_MESSAGES.ONLY_ALPHABET);
-});
+test('It should not allow letters to be inputted', () => {
+  const { getByLabelText } = render(<Login />)
+  const usernameInput = getByLabelText('username-input');
+  const passwordInput = getByLabelText('password-input');
 
+  fireEvent.change(usernameInput, {target: {value: 'jack'}});
+  fireEvent.change(passwordInput, {target: {value: 'aass'}});
+
+  console.log(container.state, 'state');
+
+  expect(usernameInput.value).toBe('jack');
+  expect(passwordInput.value).toBe('aass');
+})
