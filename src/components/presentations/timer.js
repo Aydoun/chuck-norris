@@ -8,8 +8,8 @@ function Timer(props) {
   function toggleText() {
     const newText = text.indexOf('Start') >= 0 ? 'Stop Timer' : 'Start Timer';
     setText(newText);
-    if(props.onAction) {
-      props.onAction();
+    if(props.startTimer) {
+      props.startTimer();
     }
   }
 
@@ -21,11 +21,11 @@ function Timer(props) {
 }
 
 Timer.propTypes = {
-  onAction: PropTypes.func
+  startTimer: PropTypes.func
 };
 
 Timer.defaultProps = {
-  onAction: () => {},
+  startTimer: () => {},
 };
 
 export default Timer;
