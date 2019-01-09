@@ -1,16 +1,19 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { Row, Col, Grid, ProgressBar } from 'react-bootstrap/lib';
 import Timer from '../presentations/timer';
 import JokesList from '../presentations/jokesList';
+import { getJokesList } from '../../actions/jokes';
 
-export default class Jokes extends React.Component {
+class Jokes extends React.Component {
   constructor(props) {
     super(props);
     this.interval = null;
   }
   
   componentDidMount() {
-    
+    this.props.getJokesList(10);
   }
 
   render() {
@@ -19,6 +22,7 @@ export default class Jokes extends React.Component {
     //     <ProgressBar active now={100} />
     //   )
     // }
+    const { jokesList } = this.props;
 
     return (
       <div>
@@ -27,7 +31,7 @@ export default class Jokes extends React.Component {
           <Grid>
             <Row className="show-grid">
               <Col xs={9} md={6}>
-                <JokesList content={[]}/>
+                <JokesList content={jokesList}/>
               </Col>
               <Col xs={9} md={6}>
               <JokesList content={[]}/>
@@ -39,3 +43,16 @@ export default class Jokes extends React.Component {
     );
   }
 }
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ getJokesList }, dispatch);
+}
+
+function mapStateToProps(state) {
+  console.log(state, 'state');
+  return {
+    jokesList: state.jokes.jokesList,
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Jokes);

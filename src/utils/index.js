@@ -19,7 +19,7 @@ export const swapJoke = (id, source, destination) => {
 }
 
 export const isLoggedIn = () => {
-    return localStorage.getItem('LoggedIn') === true;
+    return localStorage.getItem('LoggedIn') === "true";
 }
 
 export const validatePassword = password => {

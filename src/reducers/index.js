@@ -1,12 +1,8 @@
+import { combineReducers } from 'redux';
+import jokesReducer from './jokes';
 
-const initialState = {
+const rootReducer = combineReducers({
+  jokes:jokesReducer,
+});
 
-}
-const jokesReducer = (state = initialState, action) => {
-    switch(action.type){
-        default:
-            return state;
-    }
-}
-
-export default jokesReducer;
+export default rootReducer;
