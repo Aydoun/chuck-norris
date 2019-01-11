@@ -40,10 +40,7 @@ export default class Login extends React.Component {
     } 
 
     render() {
-       if (isLoggedIn()) {
-         return <Redirect to="/" />;
-       }
-       const { error } = this.state;
+       const { name, password, error } = this.state;
        
        return (
           <div className="login__form">
@@ -54,7 +51,13 @@ export default class Login extends React.Component {
                      Username
                   </Col>
                   <Col sm={10}>
-                     <FormControl aria-label="username-input" type="text" placeholder="Username" onChange={this.handleChange("username")} />
+                     <FormControl 
+                        aria-label="username-input" 
+                        value={name} 
+                        type="text" 
+                        placeholder="Username" 
+                        onChange={this.handleChange("username")} 
+                     />
                   </Col>
                </FormGroup>
                <FormGroup controlId="formHorizontalPassword" >
@@ -62,7 +65,13 @@ export default class Login extends React.Component {
                      Password
                   </Col>
                   <Col sm={10}>
-                     <FormControl aria-label="password-input" type="text" placeholder="Password" onChange={this.handleChange("password")} />
+                     <FormControl 
+                        aria-label="password-input" 
+                        type="text" 
+                        value={password}
+                        placeholder="Password" 
+                        onChange={this.handleChange("password")} 
+                     />
                   </Col>
                </FormGroup>
                <div className="login__error">

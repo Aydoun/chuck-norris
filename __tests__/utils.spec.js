@@ -1,12 +1,6 @@
 import { validatePassword, swapJoke } from '../src/utils';
 import { ERROR_MESSAGES } from '../src/constants';
 
-const ERRORS = {
-    PASSWORD_TOO_LONG : "PASSWORD_TOO_LONG",
-    ONLY_ALPHABETIC: "ONLY_ALPHABETIC",
-}
-
-
 test('Password should contain no longer than 32 chatacters', () => {
   const longString = 'aassddffvvccxxzzbbssjjrruueeiiddo';
   const shortString = 'this is a short string';

@@ -41,16 +41,3 @@ export const validatePassword = password => {
 
     return true;
 }
-
-// Support Functions
-const containsLetters = string => {
-    const letters = ['i', 'I', 'O'];
-
-    for (let i = 0; i < letters.length; i++) {
-        if (string.includes(letters[i])) {
-            return true;
-        }
-    }
-
-    return false;
-}

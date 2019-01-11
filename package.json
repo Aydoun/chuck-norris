@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --open",
+    "start": "node server.js",
     "server": "node server.js",
-    "test": "jest -u",
+    "test": "jest --watch",
     "lint": "eslint --fix './src/**/*.js?(x)'"
   },
   "repository": {
