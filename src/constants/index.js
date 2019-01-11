@@ -13,4 +13,5 @@ export const ERROR_MESSAGES = {
     ONLY_LOWER_ALPHABET: 'Password should only contain lower case alphabetical characters',
     FORBIDDEN_LETTERS: 'Password should not contain i, I, O',
     LETTERS_PAIRS: 'Password should contain at least to pairs of letters',
+    SUCCESSIVE_STRINGS: 'Password must contain an increasing straight of letters',
 }

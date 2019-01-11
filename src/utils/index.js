@@ -37,7 +37,24 @@ export const validatePassword = password => {
         return ERROR_MESSAGES.FORBIDDEN_LETTERS;
     } else if (!Array.isArray(password.match(/(.)\1/g)) || password.match(/(.)\1/g).length < 2) {
         return ERROR_MESSAGES.LETTERS_PAIRS;
+    } else if (!hasIncreasingLetters(password)) {
+        return ERROR_MESSAGES.SUCCESSIVE_STRINGS;
     }
 
     return true;
+}
+
+export const hasIncreasingLetters = str => {
+    const l = str.length;
+
+    for(var i = 0; i < l - 2; i++) {
+        if (
+            str.charCodeAt(i + 1) - str.charCodeAt(i) === 1 &&
+            str.charCodeAt(i + 2) - str.charCodeAt(i + 1) === 1
+        ) {
+            return true;
+        }
+    }
+
+    return false;
 }

@@ -1,4 +1,4 @@
-import { validatePassword, swapJoke } from '../src/utils';
+import { validatePassword, hasIncreasingLetters, swapJoke } from '../src/utils';
 import { ERROR_MESSAGES } from '../src/constants';
 
 test('Password should contain no longer than 32 chatacters', () => {
@@ -33,6 +33,22 @@ test('Password should contain at least two over-lapping pairs of letters', () =>
 
   expect(validatePassword(wrong1)).toEqual(ERROR_MESSAGES.LETTERS_PAIRS);
   expect(validatePassword(wrong2)).toEqual(ERROR_MESSAGES.LETTERS_PAIRS);
+});
+
+test('Password should contain an increasing straight of letters', () => {
+  const wrong1 = 'hjknsdaew';
+  const wrong2 = 'dgopwmnsa';
+  const wrong3 = 'kjmstqwzm';
+  const correct1 = 'klmdopew';
+  const correct2 = 'abcftopew';
+  const correct3 = 'xyzdoefg';
+
+  expect(hasIncreasingLetters(wrong1)).toBeFalsy();
+  expect(hasIncreasingLetters(wrong2)).toBeFalsy();
+  expect(hasIncreasingLetters(wrong3)).toBeFalsy();
+  expect(hasIncreasingLetters(correct1)).toBeTruthy();
+  expect(hasIncreasingLetters(correct2)).toBeTruthy();
+  expect(hasIncreasingLetters(correct3)).toBeTruthy();
 });
 
 test('Service should swap Elements from array', () => {
