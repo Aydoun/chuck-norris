@@ -1,31 +1,47 @@
-import { createStore } from 'redux';
-import { Provider, connect } from 'react-redux';
-import { render, cleanup } from 'react-testing-library';
-import Jokes from '../src/components/containers/jokes';
+import reducer from '../src/reducers/jokes';
+import mockData from '../src/dataMocks/jokes';
+import { PUT_JOKES_LIST, REQUEST_JOKES_LIST, PUT_ONE_JOKE } from '../src/constants/';
 
 const initialState = {
   favorites: [],
   jokesList: [],
 };
 
-const ConnectedJokes = connect(state => ({
-  jokesList: state.jokesList,
-}))(Jokes);
+test('should return the initial state', () => {
+  expect(reducer({}, {})).toEqual({});
+});
 
-function renderWithRedux(
-  ui,
-  {initialState, store = createStore(reducer, initialState)} = {},
-) {
-  return {
-    ...render(<Provider store={store}>{ui}</Provider>),
-    store,
-  }
-}
+test('should handle filling the jokes list', () => {
+  const action = {
+    type: PUT_JOKES_LIST,
+    jokes: mockData,
+    favorites: [],
+  };
+  const reducerState = reducer(initialState, action);
 
-afterEach(cleanup);
+  expect(reducerState.jokesList).toEqual(action.jokes);
+  expect(reducerState.favorites).toEqual([]);
+});
 
-test('Reducer should set Jokes List', () => {
-  expect(1+1).toBe(2);
+test('should handle the loading state', () => {
+  const action = {
+    type: REQUEST_JOKES_LIST,
+  };
+
+  expect(reducer(initialState, action).listLoading).toEqual(true);
+});
+
+test('should insert joke into favorites', () => {
+  const action = {
+    type: PUT_ONE_JOKE,
+    favorites: [{
+      id: 1,
+      joke: 'joke1',
+    }]
+  };
+
+  expect(reducer(initialState, action).favorites.length).toEqual(1);
+  expect(reducer(initialState, action).favorites).toEqual(action.favorites);
 });
 
 
