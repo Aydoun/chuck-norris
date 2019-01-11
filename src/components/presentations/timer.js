@@ -14,7 +14,7 @@ function Timer(props) {
   }
 
   return (
-    <div className="app__timer">
+    <div className="app__action">
         <Button data-testid="timer-text" bsStyle="primary" onClick={toggleText}>{text}</Button>
     </div> 
   )
