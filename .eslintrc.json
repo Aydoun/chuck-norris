@@ -1,0 +1,13 @@
+{
+    "extends": ["eslint:recommended", "plugin:react/recommended"],
+    "parser": "babel-eslint",
+    "rules": {
+        "no-console": "off",
+        "import/prefer-default-export": "off",
+        "no-undef": "off",
+        "max-len": [1, 120, 2]
+    },
+    "plugins": [
+        "react"
+    ]
+}

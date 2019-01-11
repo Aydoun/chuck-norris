@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "npm test"
+    "start": "node server.js",
+    "server": "node server.js",
+    "test": "jest --watch",
+    "lint": "eslint --fix './src/**/*.js?(x)'"
   },
   "repository": {
     "type": "git",
@@ -20,5 +23,42 @@
   "bugs": {
     "url": "https://github.com/Aydoun/chuck-norris/issues"
   },
-  "homepage": "https://github.com/Aydoun/chuck-norris#readme"
+  "homepage": "https://github.com/Aydoun/chuck-norris#readme",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "babel-polyfill": "^6.26.0",
+    "react": "^16.7.0-alpha.2",
+    "react-bootstrap": "^0.32.4",
+    "react-dom": "^16.7.0-alpha.2",
+    "react-redux": "^6.0.0",
+    "react-router-dom": "^4.3.1",
+    "redux": "^4.0.1",
+    "redux-saga": "^0.16.2"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.0.0",
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.2.3",
+    "@babel/preset-react": "^7.0.0",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-eslint": "^10.0.1",
+    "babel-loader": "^8.0.4",
+    "babel-preset-env": "^1.7.0",
+    "clean-webpack-plugin": "^1.0.0",
+    "css-loader": "^2.1.0",
+    "eslint": "^5.11.1",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.2",
+    "eslint-plugin-react": "^7.12.2",
+    "express": "^4.16.4",
+    "html-webpack-plugin": "^3.2.0",
+    "jest": "^23.6.0",
+    "prop-types": "^15.6.2",
+    "react-testing-library": "^5.4.2",
+    "redux-logger": "^3.0.6",
+    "style-loader": "^0.23.1",
+    "webpack": "^4.28.3",
+    "webpack-dev-middleware": "^3.4.0",
+    "webpack-hot-middleware": "^2.24.3"
+  }
 }

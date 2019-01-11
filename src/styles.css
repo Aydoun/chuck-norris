@@ -1,0 +1,47 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+h3 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.header {
+    height: 64px;
+    background:#a8dea9;
+}
+
+.app__action {
+    width: 150px;
+    margin: 20px auto;
+    padding: 12px;
+}
+
+.app__content {
+    margin: 20px auto; 
+}
+
+.jokes__item {
+    padding: 20px 15px;
+    font-size: larger;
+}
+
+.joke__item--action {
+    float: right;
+}
+
+.login__form {
+    max-width: 500px;
+    margin: 20px auto;
+    border-bottom: 1px solid #98e1a3;
+    padding: 10px 18px 10px;
+}
+
+.login__error {
+    text-align: center;
+    /* margin-left: 82px; */
+    margin-bottom: 8px;
+    color: crimson;
+}
